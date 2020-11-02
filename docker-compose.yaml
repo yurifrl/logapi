@@ -1,0 +1,9 @@
+version: "3.7"
+services:
+  test:
+    image: golang
+    entrypoint: ""
+    working_dir: /go/src/github.com/yurifrl/logapi
+    command: go test
+    volumes:
+      - .:/go/src/github.com/yurifrl/logapi

@@ -1,0 +1,130 @@
+2018-07-02T17:54:14.290Z [api-gateway ffd3082fe09d]: 2018/07/02 17:54:14 [error] 37#0: *1013 [lua] responses.lua:121: access(): /usr/local/share/lua/5.1/pgmoon/init.lua:233: attempt to index local 'sock' (a nil value), client: 181.171.1.54, server: kong, request: "GET /socket.io/?EIO=3&transport=websocket HTTP/1.1", host: "api.pager.com"
+2018-07-02T17:54:14.290Z [api-gateway ffd3082fe09d]: 181.171.1.54 - - [02/Jul/2018:17:54:14 +0000] "GET /socket.io/?EIO=3&transport=websocket HTTP/1.1" 500 54 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36"
+2018-07-02T17:54:15.294Z [api-gateway ffd3082fe09d]: 2018/07/02 17:54:15 [error] 37#0: *676 lua coroutine: runtime error: /usr/local/share/lua/5.1/pgmoon/init.lua:233: attempt to index local 'sock' (a nil value)
+2018-07-02T17:54:15.294Z [api-gateway ffd3082fe09d]: stack traceback:
+2018-07-02T17:54:15.294Z [api-gateway ffd3082fe09d]: coroutine 0:
+2018-07-02T17:54:15.294Z [api-gateway ffd3082fe09d]: 	/usr/local/share/lua/5.1/pgmoon/init.lua: in function 'keepalive'
+2018-07-02T17:54:15.294Z [api-gateway ffd3082fe09d]: 	/usr/local/share/lua/5.1/kong/dao/db/postgres.lua:355: in function 'query'
+2018-07-02T17:54:15.294Z [api-gateway ffd3082fe09d]: 	.../lua/5.1/kong/plugins/rate-limiting/policies/cluster.lua:181: in function 'find'
+2018-07-02T17:54:15.294Z [api-gateway ffd3082fe09d]: 	...are/lua/5.1/kong/plugins/rate-limiting/policies/init.lua:121: in function 'usage'
+2018-07-02T17:54:15.294Z [api-gateway ffd3082fe09d]: 	...cal/share/lua/5.1/kong/plugins/rate-limiting/handler.lua:46: in function 'get_usage'
+2018-07-02T17:54:15.294Z [api-gateway ffd3082fe09d]: 	...cal/share/lua/5.1/kong/plugins/rate-limiting/handler.lua:91: in function <...cal/share/lua/5.1/kong/plugins/rate-limiting/handler.lua:72>
+2018-07-02T17:54:15.294Z [api-gateway ffd3082fe09d]: coroutine 1:
+2018-07-02T17:54:15.294Z [api-gateway ffd3082fe09d]: 	[C]: in function 'resume'
+2018-07-02T17:54:15.294Z [api-gateway ffd3082fe09d]: 	coroutine.wrap:21: in function <coroutine.wrap:21>
+2018-07-02T17:54:15.294Z [api-gateway ffd3082fe09d]: 	/usr/local/share/lua/5.1/kong/init.lua:397: in function 'access'
+2018-07-02T17:54:15.294Z [api-gateway ffd3082fe09d]: 	access_by_lua(nginx-kong.conf:90):2: in function <access_by_lua(nginx-kong.conf:90):1>, client: 181.171.1.54, server: kong, request: "GET /socket.io/?EIO=3&transport=websocket HTTP/1.1", host: "api.pager.com"
+2018-07-02T17:54:15.294Z [api-gateway ffd3082fe09d]: 2018/07/02 17:54:15 [error] 37#0: *676 [lua] responses.lua:121: access(): /usr/local/share/lua/5.1/pgmoon/init.lua:233: attempt to index local 'sock' (a nil value), client: 181.171.1.54, server: kong, request: "GET /socket.io/?EIO=3&transport=websocket HTTP/1.1", host: "api.pager.com"
+2018-07-02T17:54:15.294Z [api-gateway ffd3082fe09d]: 181.171.1.54 - - [02/Jul/2018:17:54:15 +0000] "GET /socket.io/?EIO=3&transport=websocket HTTP/1.1" 500 54 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36"
+2018-07-02T17:54:15.301Z [api-gateway ffd3082fe09d]: 2018/07/02 17:54:15 [error] 37#0: *1015 lua coroutine: runtime error: /usr/local/share/lua/5.1/pgmoon/init.lua:233: attempt to index local 'sock' (a nil value)
+2018-07-02T17:54:15.301Z [api-gateway ffd3082fe09d]: stack traceback:
+2018-07-02T17:54:15.301Z [api-gateway ffd3082fe09d]: coroutine 0:
+2018-07-02T17:54:15.301Z [api-gateway ffd3082fe09d]: 	/usr/local/share/lua/5.1/pgmoon/init.lua: in function 'keepalive'
+2018-07-02T17:54:15.301Z [api-gateway ffd3082fe09d]: 	/usr/local/share/lua/5.1/kong/dao/db/postgres.lua:355: in function 'query'
+2018-07-02T17:54:15.301Z [api-gateway ffd3082fe09d]: 	.../lua/5.1/kong/plugins/rate-limiting/policies/cluster.lua:181: in function 'find'
+2018-07-02T17:54:15.301Z [api-gateway ffd3082fe09d]: 	...are/lua/5.1/kong/plugins/rate-limiting/policies/init.lua:121: in function 'usage'
+2018-07-02T17:54:15.301Z [api-gateway ffd3082fe09d]: 	...cal/share/lua/5.1/kong/plugins/rate-limiting/handler.lua:46: in function 'get_usage'
+2018-07-02T17:54:15.301Z [api-gateway ffd3082fe09d]: 	...cal/share/lua/5.1/kong/plugins/rate-limiting/handler.lua:91: in function <...cal/share/lua/5.1/kong/plugins/rate-limiting/handler.lua:72>
+2018-07-02T17:54:15.301Z [api-gateway ffd3082fe09d]: coroutine 1:
+2018-07-02T17:54:15.301Z [api-gateway ffd3082fe09d]: 	[C]: in function 'resume'
+2018-07-02T17:54:15.301Z [api-gateway ffd3082fe09d]: 	coroutine.wrap:21: in function <coroutine.wrap:21>
+2018-07-02T17:54:15.301Z [api-gateway ffd3082fe09d]: 	/usr/local/share/lua/5.1/kong/init.lua:397: in function 'access'
+2018-07-02T17:54:15.301Z [api-gateway ffd3082fe09d]: 	access_by_lua(nginx-kong.conf:90):2: in function <access_by_lua(nginx-kong.conf:90):1>, client: 142.154.213.74, server: kong, request: "GET /socket.io/?EIO=3&transport=websocket HTTP/1.1", host: "api.pager.com"
+2018-07-02T17:54:15.301Z [api-gateway ffd3082fe09d]: 2018/07/02 17:54:15 [error] 37#0: *1015 [lua] responses.lua:121: access(): /usr/local/share/lua/5.1/pgmoon/init.lua:233: attempt to index local 'sock' (a nil value), client: 142.154.213.74, server: kong, request: "GET /socket.io/?EIO=3&transport=websocket HTTP/1.1", host: "api.pager.com"
+2018-07-02T17:54:15.301Z [api-gateway ffd3082fe09d]: 142.154.213.74 - - [02/Jul/2018:17:54:15 +0000] "GET /socket.io/?EIO=3&transport=websocket HTTP/1.1" 500 54 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36"
+2018-07-02T17:54:15.303Z [api-gateway ffd3082fe09d]: 2018/07/02 17:54:15 [error] 37#0: *1017 lua coroutine: runtime error: /usr/local/share/lua/5.1/pgmoon/init.lua:233: attempt to index local 'sock' (a nil value)
+2018-07-02T17:54:15.303Z [api-gateway ffd3082fe09d]: stack traceback:
+2018-07-02T17:54:15.303Z [api-gateway ffd3082fe09d]: coroutine 0:
+2018-07-02T17:54:15.303Z [api-gateway ffd3082fe09d]: 	/usr/local/share/lua/5.1/pgmoon/init.lua: in function 'keepalive'
+2018-07-02T17:54:15.303Z [api-gateway ffd3082fe09d]: 	/usr/local/share/lua/5.1/kong/dao/db/postgres.lua:355: in function 'query'
+2018-07-02T17:54:15.303Z [api-gateway ffd3082fe09d]: 	.../lua/5.1/kong/plugins/rate-limiting/policies/cluster.lua:181: in function 'find'
+2018-07-02T17:54:15.303Z [api-gateway ffd3082fe09d]: 	...are/lua/5.1/kong/plugins/rate-limiting/policies/init.lua:121: in function 'usage'
+2018-07-02T17:54:15.303Z [api-gateway ffd3082fe09d]: 	...cal/share/lua/5.1/kong/plugins/rate-limiting/handler.lua:46: in function 'get_usage'
+2018-07-02T17:54:15.303Z [api-gateway ffd3082fe09d]: 	...cal/share/lua/5.1/kong/plugins/rate-limiting/handler.lua:91: in function <...cal/share/lua/5.1/kong/plugins/rate-limiting/handler.lua:72>
+2018-07-02T17:54:15.303Z [api-gateway ffd3082fe09d]: coroutine 1:
+2018-07-02T17:54:15.303Z [api-gateway ffd3082fe09d]: 	[C]: in function 'resume'
+2018-07-02T17:54:15.303Z [api-gateway ffd3082fe09d]: 	coroutine.wrap:21: in function <coroutine.wrap:21>
+2018-07-02T17:54:15.303Z [api-gateway ffd3082fe09d]: 	/usr/local/share/lua/5.1/kong/init.lua:397: in function 'access'
+2018-07-02T17:54:15.303Z [api-gateway ffd3082fe09d]: 	access_by_lua(nginx-kong.conf:90):2: in function <access_by_lua(nginx-kong.conf:90):1>, client: 142.154.213.74, server: kong, request: "GET /socket.io/?EIO=3&transport=websocket HTTP/1.1", host: "api.pager.com"
+2018-07-02T17:54:15.303Z [api-gateway ffd3082fe09d]: 2018/07/02 17:54:15 [error] 37#0: *1017 [lua] responses.lua:121: access(): /usr/local/share/lua/5.1/pgmoon/init.lua:233: attempt to index local 'sock' (a nil value), client: 142.154.213.74, server: kong, request: "GET /socket.io/?EIO=3&transport=websocket HTTP/1.1", host: "api.pager.com"
+2018-07-02T17:54:15.304Z [api-gateway ffd3082fe09d]: 142.154.213.74 - - [02/Jul/2018:17:54:15 +0000] "GET /socket.io/?EIO=3&transport=websocket HTTP/1.1" 500 54 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36"
+2018-07-02T17:54:17.316Z [api-gateway ffd3082fe09d]: 2018/07/02 17:54:17 [error] 37#0: *678 lua coroutine: runtime error: /usr/local/share/lua/5.1/pgmoon/init.lua:233: attempt to index local 'sock' (a nil value)
+2018-07-02T17:54:17.316Z [api-gateway ffd3082fe09d]: stack traceback:
+2018-07-02T17:54:17.316Z [api-gateway ffd3082fe09d]: coroutine 0:
+2018-07-02T17:54:17.316Z [api-gateway ffd3082fe09d]: 	/usr/local/share/lua/5.1/pgmoon/init.lua: in function 'keepalive'
+2018-07-02T17:54:17.316Z [api-gateway ffd3082fe09d]: 	/usr/local/share/lua/5.1/kong/dao/db/postgres.lua:355: in function 'query'
+2018-07-02T17:54:17.316Z [api-gateway ffd3082fe09d]: 	.../lua/5.1/kong/plugins/rate-limiting/policies/cluster.lua:181: in function 'find'
+2018-07-02T17:54:17.316Z [api-gateway ffd3082fe09d]: 	...are/lua/5.1/kong/plugins/rate-limiting/policies/init.lua:121: in function 'usage'
+2018-07-02T17:54:17.316Z [api-gateway ffd3082fe09d]: 	...cal/share/lua/5.1/kong/plugins/rate-limiting/handler.lua:46: in function 'get_usage'
+2018-07-02T17:54:17.316Z [api-gateway ffd3082fe09d]: 	...cal/share/lua/5.1/kong/plugins/rate-limiting/handler.lua:91: in function <...cal/share/lua/5.1/kong/plugins/rate-limiting/handler.lua:72>
+2018-07-02T17:54:17.316Z [api-gateway ffd3082fe09d]: coroutine 1:
+2018-07-02T17:54:17.316Z [api-gateway ffd3082fe09d]: 	[C]: in function 'resume'
+2018-07-02T17:54:17.316Z [api-gateway ffd3082fe09d]: 	coroutine.wrap:21: in function <coroutine.wrap:21>
+2018-07-02T17:54:17.316Z [api-gateway ffd3082fe09d]: 	/usr/local/share/lua/5.1/kong/init.lua:397: in function 'access'
+2018-07-02T17:54:17.316Z [api-gateway ffd3082fe09d]: 	access_by_lua(nginx-kong.conf:90):2: in function <access_by_lua(nginx-kong.conf:90):1>, client: 142.154.213.74, server: kong, request: "GET /socket.io/?EIO=3&transport=websocket HTTP/1.1", host: "api.pager.com"
+2018-07-02T17:54:17.316Z [api-gateway ffd3082fe09d]: 2018/07/02 17:54:17 [error] 37#0: *678 [lua] responses.lua:121: access(): /usr/local/share/lua/5.1/pgmoon/init.lua:233: attempt to index local 'sock' (a nil value), client: 142.154.213.74, server: kong, request: "GET /socket.io/?EIO=3&transport=websocket HTTP/1.1", host: "api.pager.com"
+2018-07-02T17:54:17.316Z [api-gateway ffd3082fe09d]: 142.154.213.74 - - [02/Jul/2018:17:54:17 +0000] "GET /socket.io/?EIO=3&transport=websocket HTTP/1.1" 500 54 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36"
+2018-07-02T17:54:33.358Z [api-gateway ffd3082fe09d]: 2018/07/02 17:54:33 [error] 37#0: *1135 lua entry thread aborted: runtime error: /usr/local/share/lua/5.1/pgmoon/init.lua:233: attempt to index local 'sock' (a nil value)
+2018-07-02T17:54:33.358Z [api-gateway ffd3082fe09d]: stack traceback:
+2018-07-02T17:54:33.358Z [api-gateway ffd3082fe09d]: coroutine 0:
+2018-07-02T17:54:33.358Z [api-gateway ffd3082fe09d]: 	/usr/local/share/lua/5.1/pgmoon/init.lua: in function 'keepalive'
+2018-07-02T17:54:33.358Z [api-gateway ffd3082fe09d]: 	/usr/local/share/lua/5.1/kong/dao/db/postgres.lua:355: in function 'query'
+2018-07-02T17:54:33.358Z [api-gateway ffd3082fe09d]: 	.../lua/5.1/kong/plugins/rate-limiting/policies/cluster.lua:141: in function 'increment'
+2018-07-02T17:54:33.358Z [api-gateway ffd3082fe09d]: 	...are/lua/5.1/kong/plugins/rate-limiting/policies/init.lua:100: in function 'increment'
+2018-07-02T17:54:33.358Z [api-gateway ffd3082fe09d]: 	...cal/share/lua/5.1/kong/plugins/rate-limiting/handler.lua:119: in function <...cal/share/lua/5.1/kong/plugins/rate-limiting/handler.lua:115>, context: ngx.timer, client: 186.49.12.152, server: 0.0.0.0:8000
+2018-07-02T17:54:34.326Z [api-gateway ffd3082fe09d]: 2018/07/02 17:54:34 [error] 37#0: *1140 lua entry thread aborted: runtime error: /usr/local/share/lua/5.1/pgmoon/init.lua:233: attempt to index local 'sock' (a nil value)
+2018-07-02T17:54:34.326Z [api-gateway ffd3082fe09d]: stack traceback:
+2018-07-02T17:54:34.326Z [api-gateway ffd3082fe09d]: coroutine 0:
+2018-07-02T17:54:34.326Z [api-gateway ffd3082fe09d]: 	/usr/local/share/lua/5.1/pgmoon/init.lua: in function 'keepalive'
+2018-07-02T17:54:34.326Z [api-gateway ffd3082fe09d]: 	/usr/local/share/lua/5.1/kong/dao/db/postgres.lua:355: in function 'query'
+2018-07-02T17:54:34.326Z [api-gateway ffd3082fe09d]: 	.../lua/5.1/kong/plugins/rate-limiting/policies/cluster.lua:141: in function 'increment'
+2018-07-02T17:54:34.326Z [api-gateway ffd3082fe09d]: 	...are/lua/5.1/kong/plugins/rate-limiting/policies/init.lua:100: in function 'increment'
+2018-07-02T17:54:34.326Z [api-gateway ffd3082fe09d]: 	...cal/share/lua/5.1/kong/plugins/rate-limiting/handler.lua:119: in function <...cal/share/lua/5.1/kong/plugins/rate-limiting/handler.lua:115>, context: ngx.timer, client: 95.91.213.60, server: 0.0.0.0:8000
+2018-07-02T17:54:38.398Z [api-gateway ffd3082fe09d]: 2018/07/02 17:54:38 [error] 37#0: *1173 lua coroutine: runtime error: /usr/local/share/lua/5.1/pgmoon/init.lua:233: attempt to index local 'sock' (a nil value)
+2018-07-02T17:54:38.398Z [api-gateway ffd3082fe09d]: stack traceback:
+2018-07-02T17:54:38.398Z [api-gateway ffd3082fe09d]: coroutine 0:
+2018-07-02T17:54:38.398Z [api-gateway ffd3082fe09d]: 	/usr/local/share/lua/5.1/pgmoon/init.lua: in function 'keepalive'
+2018-07-02T17:54:38.398Z [api-gateway ffd3082fe09d]: 	/usr/local/share/lua/5.1/kong/dao/db/postgres.lua:355: in function 'query'
+2018-07-02T17:54:38.398Z [api-gateway ffd3082fe09d]: 	.../lua/5.1/kong/plugins/rate-limiting/policies/cluster.lua:181: in function 'find'
+2018-07-02T17:54:38.398Z [api-gateway ffd3082fe09d]: 	...are/lua/5.1/kong/plugins/rate-limiting/policies/init.lua:121: in function 'usage'
+2018-07-02T17:54:38.398Z [api-gateway ffd3082fe09d]: 	...cal/share/lua/5.1/kong/plugins/rate-limiting/handler.lua:46: in function 'get_usage'
+2018-07-02T17:54:38.398Z [api-gateway ffd3082fe09d]: 	...cal/share/lua/5.1/kong/plugins/rate-limiting/handler.lua:91: in function <...cal/share/lua/5.1/kong/plugins/rate-limiting/handler.lua:72>
+2018-07-02T17:54:38.398Z [api-gateway ffd3082fe09d]: coroutine 1:
+2018-07-02T17:54:38.398Z [api-gateway ffd3082fe09d]: 	[C]: in function 'resume'
+2018-07-02T17:54:38.398Z [api-gateway ffd3082fe09d]: 	coroutine.wrap:21: in function <coroutine.wrap:21>
+2018-07-02T17:54:38.398Z [api-gateway ffd3082fe09d]: 	/usr/local/share/lua/5.1/kong/init.lua:397: in function 'access'
+2018-07-02T17:54:38.398Z [api-gateway ffd3082fe09d]: 	access_by_lua(nginx-kong.conf:90):2: in function <access_by_lua(nginx-kong.conf:90):1>, client: 142.154.213.74, server: kong, request: "GET /socket.io/?EIO=3&transport=websocket HTTP/1.1", host: "api.pager.com"
+2018-07-02T17:54:38.398Z [api-gateway ffd3082fe09d]: 2018/07/02 17:54:38 [error] 37#0: *1173 [lua] responses.lua:121: access(): /usr/local/share/lua/5.1/pgmoon/init.lua:233: attempt to index local 'sock' (a nil value), client: 142.154.213.74, server: kong, request: "GET /socket.io/?EIO=3&transport=websocket HTTP/1.1", host: "api.pager.com"
+2018-07-02T17:54:38.398Z [api-gateway ffd3082fe09d]: 142.154.213.74 - - [02/Jul/2018:17:54:38 +0000] "GET /socket.io/?EIO=3&transport=websocket HTTP/1.1" 500 54 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36"
+2018-07-02T17:54:39.306Z [api-gateway ffd3082fe09d]: 181.171.1.54 - - [02/Jul/2018:17:54:39 +0000] "GET /socket.io/?EIO=3&transport=websocket HTTP/1.1" 500 54 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36"
+2018-07-02T17:54:39.306Z [api-gateway ffd3082fe09d]: 2018/07/02 17:54:39 [error] 37#0: *1171 lua coroutine: runtime error: /usr/local/share/lua/5.1/pgmoon/init.lua:233: attempt to index local 'sock' (a nil value)
+2018-07-02T17:54:39.306Z [api-gateway ffd3082fe09d]: stack traceback:
+2018-07-02T17:54:39.306Z [api-gateway ffd3082fe09d]: coroutine 0:
+2018-07-02T17:54:39.306Z [api-gateway ffd3082fe09d]: 	/usr/local/share/lua/5.1/pgmoon/init.lua: in function 'keepalive'
+2018-07-02T17:54:39.306Z [api-gateway ffd3082fe09d]: 	/usr/local/share/lua/5.1/kong/dao/db/postgres.lua:355: in function 'query'
+2018-07-02T17:54:39.306Z [api-gateway ffd3082fe09d]: 	.../lua/5.1/kong/plugins/rate-limiting/policies/cluster.lua:181: in function 'find'
+2018-07-02T17:54:39.306Z [api-gateway ffd3082fe09d]: 	...are/lua/5.1/kong/plugins/rate-limiting/policies/init.lua:121: in function 'usage'
+2018-07-02T17:54:39.306Z [api-gateway ffd3082fe09d]: 	...cal/share/lua/5.1/kong/plugins/rate-limiting/handler.lua:46: in function 'get_usage'
+2018-07-02T17:54:39.306Z [api-gateway ffd3082fe09d]: 	...cal/share/lua/5.1/kong/plugins/rate-limiting/handler.lua:91: in function <...cal/share/lua/5.1/kong/plugins/rate-limiting/handler.lua:72>
+2018-07-02T17:54:39.306Z [api-gateway ffd3082fe09d]: coroutine 1:
+2018-07-02T17:54:39.306Z [api-gateway ffd3082fe09d]: 	[C]: in function 'resume'
+2018-07-02T17:54:39.306Z [api-gateway ffd3082fe09d]: 	coroutine.wrap:21: in function <coroutine.wrap:21>
+2018-07-02T17:54:39.306Z [api-gateway ffd3082fe09d]: 	/usr/local/share/lua/5.1/kong/init.lua:397: in function 'access'
+2018-07-02T17:54:39.306Z [api-gateway ffd3082fe09d]: 	access_by_lua(nginx-kong.conf:90):2: in function <access_by_lua(nginx-kong.conf:90):1>, client: 181.171.1.54, server: kong, request: "GET /socket.io/?EIO=3&transport=websocket HTTP/1.1", host: "api.pager.com"
+2018-07-02T17:54:39.306Z [api-gateway ffd3082fe09d]: 2018/07/02 17:54:39 [error] 37#0: *1171 [lua] responses.lua:121: access(): /usr/local/share/lua/5.1/pgmoon/init.lua:233: attempt to index local 'sock' (a nil value), client: 181.171.1.54, server: kong, request: "GET /socket.io/?EIO=3&transport=websocket HTTP/1.1", host: "api.pager.com"
+2018-07-02T17:54:39.322Z [api-gateway ffd3082fe09d]: 95.91.213.60 - - [02/Jul/2018:17:54:39 +0000] "GET /socket.io/?EIO=3&transport=websocket HTTP/1.1" 500 54 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.42 Safari/537.36"
+2018-07-02T17:54:39.322Z [api-gateway ffd3082fe09d]: 2018/07/02 17:54:39 [error] 37#0: *1169 lua coroutine: runtime error: /usr/local/share/lua/5.1/pgmoon/init.lua:233: attempt to index local 'sock' (a nil value)
+2018-07-02T17:54:39.322Z [api-gateway ffd3082fe09d]: stack traceback:
+2018-07-02T17:54:39.322Z [api-gateway ffd3082fe09d]: coroutine 0:
+2018-07-02T17:54:39.322Z [api-gateway ffd3082fe09d]: 	/usr/local/share/lua/5.1/pgmoon/init.lua: in function 'keepalive'
+2018-07-02T17:54:39.322Z [api-gateway ffd3082fe09d]: 	/usr/local/share/lua/5.1/kong/dao/db/postgres.lua:355: in function 'query'
+2018-07-02T17:54:39.322Z [api-gateway ffd3082fe09d]: 	.../lua/5.1/kong/plugins/rate-limiting/policies/cluster.lua:181: in function 'find'
+2018-07-02T17:54:39.322Z [api-gateway ffd3082fe09d]: 	...are/lua/5.1/kong/plugins/rate-limiting/policies/init.lua:121: in function 'usage'
+2018-07-02T17:54:39.322Z [api-gateway ffd3082fe09d]: 	...cal/share/lua/5.1/kong/plugins/rate-limiting/handler.lua:46: in function 'get_usage'
+2018-07-02T17:54:39.322Z [api-gateway ffd3082fe09d]: 	...cal/share/lua/5.1/kong/plugins/rate-limiting/handler.lua:91: in function <...cal/share/lua/5.1/kong/plugins/rate-limiting/handler.lua:72>
+2018-07-02T17:54:39.322Z [api-gateway ffd3082fe09d]: coroutine 1:
+2018-07-02T17:54:39.322Z [api-gateway ffd3082fe09d]: 	[C]: in function 'resume'
+2018-07-02T17:54:39.322Z [api-gateway ffd3082fe09d]: 	coroutine.wrap:21: in function <coroutine.wrap:21>
+2018-07-02T17:54:39.322Z [api-gateway ffd3082fe09d]: 	/usr/local/share/lua/5.1/kong/init.lua:397: in function 'access'
+2018-07-02T17:54:39.322Z [api-gateway ffd3082fe09d]: 	access_by_lua(nginx-kong.conf:90):2: in function <access_by_lua(nginx-kong.conf:90):1>, client: 95.91.213.60, server: kong, request: "GET /socket.io/?EIO=3&transport=websocket HTTP/1.1", host: "api.pager.com"
+2018-07-02T17:54:39.322Z [api-gateway ffd3082fe09d]: 2018/07/02 17:54:39 [error] 37#0: *1169 [lua] responses.lua:121: access(): /usr/local/share/lua/5.1/pgmoon/init.lua:233: attempt to index local 'sock' (a nil value), client: 95.91.213.60, server: kong, request: "GET /socket.io/?EIO=3&transport=websocket HTTP/1.1", host: "api.pager.com"
