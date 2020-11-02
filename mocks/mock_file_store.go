@@ -47,10 +47,10 @@ func (mr *MockFileStoreMockRecorder) Bump(arg0 interface{}) *gomock.Call {
 }
 
 // GetAll mocks base method
-func (m *MockFileStore) GetAll() ([]int, error) {
+func (m *MockFileStore) GetAll() (map[string]int, error) {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "GetAll")
-	ret0, _ := ret[0].([]int)
+	ret0, _ := ret[0].(map[string]int)
 	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }

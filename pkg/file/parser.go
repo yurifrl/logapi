@@ -3,7 +3,6 @@ package file
 import (
 	"github.com/sirupsen/logrus"
 	"github.com/yurifrl/logapi"
-	"github.com/yurifrl/logapi/pkg/file/parsers"
 )
 
 // Parser is the core type for parsing
@@ -21,24 +20,7 @@ func NewParser(log *logrus.Logger) *Parser {
 
 // Parse parses a line
 func (p *Parser) Parse(text string) (input logapi.FileParserInput, err error) {
-	input = NewInput(text)
+	input, err = NewInput(text)
 
-	err = input.Add("time", &parsers.Date{})
-	if err != nil {
-		return nil, err
-	}
-	err = input.Add("payload", &parsers.Payload{})
-	if err != nil {
-		return nil, err
-	}
-	err = input.Add("details", &parsers.Details{})
-	if err != nil {
-		return nil, err
-	}
-	err = input.Add("error", &parsers.Error{})
-	if err != nil {
-		return nil, err
-	}
-
-	return input, nil
+	return input, err
 }

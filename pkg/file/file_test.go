@@ -69,7 +69,7 @@ func TestSomething(t *testing.T) {
 			f, _ := newFile(mockFileStore, tc.content)
 			err := f.Sync(tc.input, lastRead)
 			if err != nil {
-				t.Errorf("expected '%s', got '%s'", nil, err)
+				t.Error(err)
 			}
 		})
 	}

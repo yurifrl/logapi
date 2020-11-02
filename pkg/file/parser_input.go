@@ -1,74 +1,96 @@
 package file
 
 import (
-	"fmt"
+	"regexp"
+	"strings"
 	"time"
-
-	"github.com/yurifrl/logapi"
 )
 
 // Input Is the object value returned, it represent one line of input parsed
 type Input struct {
-	text  string
-	items map[string]logapi.FileParserItem
+	text string
 
 	// This demands knloge of the inplementated dynamic parsers
 	time    time.Time
 	details []string
-	payload string
+	trace   string
 	error   bool
 }
 
 // IsError returns true is the log line is
-func (p *Input) IsError() bool {
-	return p.error
+func (i *Input) IsError() bool {
+	return i.error
 }
 
 // Details return the details of a line
-func (p *Input) Details() []string {
-	return p.details
+func (i *Input) Details() []string {
+	return i.details
 }
 
 // NewInput Creates a new input
-func NewInput(text string) *Input {
-	p := &Input{
-		text:  text,
-		items: make(map[string]logapi.FileParserItem),
+func NewInput(text string) (*Input, error) {
+	i := &Input{
+		text: text,
 	}
-	return p
+	err := i.setAll()
+	return i, err
 }
 
-func (p *Input) Add(name string, item logapi.FileParserItem) (err error) {
-	item.Set(p.text)
-	p.items[name] = item
-	var buffer interface{}
+func (i *Input) setAll() (err error) {
+	if err = i.setDetails(); err != nil {
+		return
+	}
+	if err = i.setTime(); err != nil {
+		return
+	}
 
-	// This is ugly, I will no spend to much time here, let it like this for now
-	switch name {
-	case "time":
-		buffer, err = item.Get()
-		p.time = buffer.(time.Time)
-	case "details":
-		buffer, err = item.Get()
-		p.details = buffer.([]string)
-	case "payload":
-		buffer, err = item.Get()
-		p.payload = buffer.(string)
-	case "error":
-		buffer, err = item.Get()
-		p.error = buffer.(bool)
-	default:
-		err = fmt.Errorf("Invalid option passed")
+	if err = i.setTrace(); err != nil {
+		return
+	}
+
+	if err = i.setError(); err != nil {
+		return
 	}
 
 	return err
 }
 
-// Get access the raw parser data
-func (p *Input) Get(name string) (interface{}, error) {
-	s, err := p.items[name].Get()
+// Fields
+
+func (i *Input) setTime() error {
+	logSlice := strings.SplitN(i.text, " ", 2)
+	logCreationTime, err := time.Parse(time.RFC3339, logSlice[0])
 	if err != nil {
-		return nil, fmt.Errorf("Parsing error: `%v` on `%s`", err, name)
+		return err
 	}
-	return s, nil
+
+	i.time = logCreationTime
+
+	return nil
+}
+
+func (i *Input) setDetails() error {
+	r := regexp.MustCompile(`\[([^\[\]]*)\]`)
+
+	submatchall := r.FindAllString(i.text, -1)
+	for _, elm := range submatchall {
+		elm = strings.Trim(elm, "[")
+		elm = strings.Trim(elm, "]")
+		i.details = append(i.details, elm)
+	}
+	i.details = strings.Split(i.details[0], " ")
+
+	return nil
+}
+
+func (i *Input) setError() error {
+	i.error = strings.Contains(i.text, "[error]")
+
+	return nil
+}
+
+func (i *Input) setTrace() error {
+	i.trace = strings.Split(i.text, "]:")[1]
+
+	return nil
 }

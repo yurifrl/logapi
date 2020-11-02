@@ -18,12 +18,14 @@ type FileParser interface {
 }
 
 type FileParserInput interface {
-	Add(name string, item FileParserItem) error
 	IsError() bool
 	Details() []string
 }
 
 type FileParserItem interface {
 	Set(text string) error
-	Get() (interface{}, error)
+	GetTime() (time.Time, error)
+	GetDetails() ([]string, error)
+	GetTrace() (string, error)
+	GetError() (bool, error)
 }
