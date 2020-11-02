@@ -2,7 +2,6 @@ package main
 
 import (
 	"os"
-	"time"
 
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/afero"
@@ -30,14 +29,14 @@ func addServerCmd(s *server.Server) *cobra.Command {
 				logrus.New(),
 				fileStore,
 			)
-			err := f.Sync("/home/yuri/Workdir/src/github.com/yurifrl/logapi/examples/log.txt", time.Now())
-			if err != nil {
-				logrus.Panic(os.Stderr, err)
-				os.Exit(2)
-			}
+			// err := f.Sync("examples/log.txt", time.Now())
+			// if err != nil {
+			// 	logrus.Panic(os.Stderr, err)
+			// 	os.Exit(2)
+			// }
 
 			// Setup fileserver
-			err = fileserver.Setup(logrus.New(), s.Router(), fileStore)
+			err := fileserver.Setup(logrus.New(), s.Router(), fileStore, f)
 			if err != nil {
 				logrus.Panic(os.Stderr, err)
 				os.Exit(2)

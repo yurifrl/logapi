@@ -1,10 +1,16 @@
 package logapi
 
+import "time"
+
 //go:generate mockgen -destination=mocks/mock_file_store.go -package=mocks github.com/yurifrl/logapi FileStore
 // FileStore ...
 type FileStore interface {
 	Bump(key string) error
 	GetAll() (map[string]int, error)
+}
+
+type FileSync interface {
+	Sync(fileName string, lastRead time.Time) error
 }
 
 type FileParser interface {
