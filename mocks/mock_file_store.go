@@ -7,6 +7,7 @@ package mocks
 import (
 	gomock "github.com/golang/mock/gomock"
 	reflect "reflect"
+	time "time"
 )
 
 // MockFileStore is a mock of FileStore interface
@@ -33,17 +34,17 @@ func (m *MockFileStore) EXPECT() *MockFileStoreMockRecorder {
 }
 
 // Bump mocks base method
-func (m *MockFileStore) Bump(arg0 string) error {
+func (m *MockFileStore) Bump(arg0 string, arg1 time.Time) error {
 	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "Bump", arg0)
+	ret := m.ctrl.Call(m, "Bump", arg0, arg1)
 	ret0, _ := ret[0].(error)
 	return ret0
 }
 
 // Bump indicates an expected call of Bump
-func (mr *MockFileStoreMockRecorder) Bump(arg0 interface{}) *gomock.Call {
+func (mr *MockFileStoreMockRecorder) Bump(arg0, arg1 interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Bump", reflect.TypeOf((*MockFileStore)(nil).Bump), arg0)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Bump", reflect.TypeOf((*MockFileStore)(nil).Bump), arg0, arg1)
 }
 
 // GetAll mocks base method
@@ -59,4 +60,19 @@ func (m *MockFileStore) GetAll() (map[string]int, error) {
 func (mr *MockFileStoreMockRecorder) GetAll() *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetAll", reflect.TypeOf((*MockFileStore)(nil).GetAll))
+}
+
+// Last mocks base method
+func (m *MockFileStore) Last() (time.Time, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "Last")
+	ret0, _ := ret[0].(time.Time)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// Last indicates an expected call of Last
+func (mr *MockFileStoreMockRecorder) Last() *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Last", reflect.TypeOf((*MockFileStore)(nil).Last))
 }

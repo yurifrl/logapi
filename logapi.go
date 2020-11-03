@@ -5,12 +5,14 @@ import "time"
 //go:generate mockgen -destination=mocks/mock_file_store.go -package=mocks github.com/yurifrl/logapi FileStore
 // FileStore ...
 type FileStore interface {
-	Bump(key string) error
+	Bump(key string, time time.Time) error
 	GetAll() (map[string]int, error)
+	Last() (time.Time, error)
 }
 
-type FileSync interface {
-	Sync(fileName string, lastRead time.Time) error
+//go:generate mockgen -destination=mocks/mock_file.go -package=mocks github.com/yurifrl/logapi File
+type File interface {
+	Sync(fileName string) error
 }
 
 type FileParser interface {
@@ -20,12 +22,5 @@ type FileParser interface {
 type FileParserInput interface {
 	IsError() bool
 	Details() []string
-}
-
-type FileParserItem interface {
-	Set(text string) error
-	GetTime() (time.Time, error)
-	GetDetails() ([]string, error)
-	GetTrace() (string, error)
-	GetError() (bool, error)
+	Time() time.Time
 }

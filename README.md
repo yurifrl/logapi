@@ -33,3 +33,4 @@ Optional:
 
 - [ ] Handle file update
 - [ ] Read only parts of the file that were not read
+- [ ] handle multiple files

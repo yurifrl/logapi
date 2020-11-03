@@ -7,45 +7,39 @@ import (
 
 	"github.com/gavv/httpexpect"
 	"github.com/go-chi/chi"
-	"github.com/stretchr/testify/assert"
-	"github.com/stretchr/testify/mock"
+	"github.com/golang/mock/gomock"
+	"github.com/sirupsen/logrus"
 
-	"github.com/yurifrl/logapi/gorestapi"
 	"github.com/yurifrl/logapi/mocks"
 )
 
-func FileServerGetAll(t *testing.T) {
-
+func TestFileServerGetAll(t *testing.T) {
 	// Create test server
 	r := chi.NewRouter()
 	server := httptest.NewServer(r)
 	defer server.Close()
 
 	// Mock Store and server
-	ts := new(mocks.)
-	err := Setup(r, ts)
-	assert.Nil(t, err)
+	mockCtrl := gomock.NewController(t)
+	defer mockCtrl.Finish()
+	mockFileStore := mocks.NewMockFileStore(mockCtrl)
+	mockFile := mocks.NewMockFile(mockCtrl)
 
 	// Create Item
-	i := []*gorestapi.Thing{
-		&gorestapi.Thing{
-			ID:   "id1",
-			Name: "name1",
-		},
-		&gorestapi.Thing{
-			ID:   "id2",
-			Name: "name2",
-		},
-	}
+	item := make(map[string]int)
+	item["foo"] = 1
 
-	// Mock call to item store
-	ts.On("ThingFind", mock.AnythingOfType("*context.valueCtx")).Once().Return(i, nil)
+	// Expectations
+	mockFileStore.EXPECT().GetAll().Return(item, nil)
+	mockFile.EXPECT().Sync(gomock.Any(), gomock.Any()).Return(nil)
+
+	// Setup
+	err := Setup(logrus.New(), r, mockFileStore, mockFile)
+	if err != nil {
+		t.Error(err)
+	}
 
 	// Make request and validate we get back proper response
 	e := httpexpect.New(t, server.URL)
-	e.GET("/things").Expect().Status(http.StatusOK).JSON().Array().Equal(&i)
-
-	// Check remaining expectations
-	ts.AssertExpectations(t)
-
+	e.GET("/files").Expect().Status(http.StatusOK).JSON().Equal(&item)
 }
