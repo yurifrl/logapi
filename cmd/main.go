@@ -16,6 +16,8 @@ var cfgFile string
 var logLevel string
 var verbose bool
 var dryRun bool
+var fileName string
+
 var v = viper.New()
 
 // RootCmd represents the base command when called without any subcommands
@@ -47,6 +49,7 @@ func main() {
 	RootCmd.PersistentFlags().BoolVarP(&verbose, "verbose", "v", false, "Dry Run")
 	RootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default is config.yaml)")
 	RootCmd.PersistentFlags().StringVar(&logLevel, "log-level", logrus.WarnLevel.String(), "Log level (debug, info, warn, error, fatal, panic")
+	RootCmd.PersistentFlags().StringVar(&fileName, "file", "", "The name of the file to read")
 
 	if err := RootCmd.Execute(); err != nil {
 		logrus.Fatal(err)

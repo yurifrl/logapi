@@ -50,8 +50,7 @@ func TestFileSync(t *testing.T) {
 	mockFileStore := mocks.NewMockFileStore(mockCtrl)
 
 	// Define expectations
-	mockFileStore.EXPECT().Bump(gomock.Any(), gomock.Any()).Return(nil).MinTimes(10)
-	mockFileStore.EXPECT().Last().Return(time.Time{}, nil)
+	mockFileStore.EXPECT().Bump(gomock.Any()).Return(nil).MinTimes(10)
 
 	// Create Test items
 	var tests = []struct {

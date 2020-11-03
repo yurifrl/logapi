@@ -13,7 +13,6 @@ import (
 )
 
 func addReadCmd() *cobra.Command {
-	var fileName string
 
 	cmd := &cobra.Command{
 		Use:   "read",
@@ -53,8 +52,6 @@ func addReadCmd() *cobra.Command {
 			fmt.Println(string(out))
 		},
 	}
-
-	cmd.PersistentFlags().StringVar(&fileName, "file", "", "The name of the file to read")
 
 	return cmd
 }

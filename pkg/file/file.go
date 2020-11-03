@@ -61,17 +61,6 @@ func (f *File) Sync(fileName string) error {
 	// Read the first line of the file
 	reader := bufio.NewReader(file)
 
-	lastLine, err := reader.ReadString('\n')
-	if err != nil && err != io.EOF {
-		return err
-	}
-
-	// Save this line
-	if err := f.Save(lastLine); err == EOF {
-		f.logger.Info(err)
-		return nil
-	}
-
 	if err = f.process(reader); err != nil {
 		return nil
 	}
@@ -180,24 +169,14 @@ func (f *File) Save(text string) (err error) {
 		return fmt.Errorf("Failed to parse the string: `%v` with error `%v`", text, err)
 	}
 
-	// Get Last line that was read
-	lastReadLineTime, err := f.store.Last()
-	if err != nil {
-		return err
-	}
-	isFirstTime := f.lastSync.Equal(time.Time{})
-
-	// Compare last line with last read line
-	if !parsedText.Time().After(lastReadLineTime) && !isFirstTime {
-		return EOF
+	if !parsedText.IsError() {
+		return nil
 	}
 
 	// Save if it's an error
-	if parsedText.IsError() {
-		for _, d := range parsedText.Details() {
-			if err := f.store.Bump(d, parsedText.Time()); err != nil {
-				return fmt.Errorf("Failed to store with error `%v`", err)
-			}
+	for _, d := range parsedText.Details() {
+		if err := f.store.Bump(d); err != nil {
+			return fmt.Errorf("Failed to store with error `%v`", err)
 		}
 	}
 

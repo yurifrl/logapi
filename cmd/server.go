@@ -30,16 +30,18 @@ func addServerCmd(s *server.Server) *cobra.Command {
 				fileStore,
 			)
 
-			err := f.Sync("examples/log.txt")
+			// @TODO: Get this from config
+			// @TODO: Sync on file change
+			err := f.Sync(fileName)
 			if err != nil {
-				logrus.Panic(os.Stderr, err)
+				logrus.Error(os.Stderr, err)
 				os.Exit(2)
 			}
 
 			// Setup fileserver
 			err = fileserver.Setup(logrus.New(), s.Router(), fileStore, f)
 			if err != nil {
-				logrus.Panic(os.Stderr, err)
+				logrus.Error(os.Stderr, err)
 				os.Exit(2)
 			}
 

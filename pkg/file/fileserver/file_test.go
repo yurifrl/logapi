@@ -31,7 +31,6 @@ func TestFileServerGetAll(t *testing.T) {
 
 	// Expectations
 	mockFileStore.EXPECT().GetAll().Return(item, nil)
-	mockFile.EXPECT().Sync(gomock.Any(), gomock.Any()).Return(nil)
 
 	// Setup
 	err := Setup(logrus.New(), r, mockFileStore, mockFile)

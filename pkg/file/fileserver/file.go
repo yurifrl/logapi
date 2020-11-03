@@ -40,12 +40,6 @@ func Setup(logger *logrus.Logger, router chi.Router, store logapi.FileStore, fil
 
 func (s *Server) Files() http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
-		err := s.file.Sync(fileName)
-		if err != nil {
-			render.Render(w, r, server.ErrInvalidRequest(err))
-			return
-		}
-
 		bs, err := s.store.GetAll()
 		if err != nil {
 			render.Render(w, r, server.ErrInvalidRequest(err))
