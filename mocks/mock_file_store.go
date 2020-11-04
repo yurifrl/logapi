@@ -33,7 +33,7 @@ func (m *MockFileStore) EXPECT() *MockFileStoreMockRecorder {
 }
 
 // Bump mocks base method
-func (m *MockFileStore) Bump(arg0 string) error {
+func (m *MockFileStore) Bump(arg0 []string) error {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "Bump", arg0)
 	ret0, _ := ret[0].(error)
@@ -47,10 +47,10 @@ func (mr *MockFileStoreMockRecorder) Bump(arg0 interface{}) *gomock.Call {
 }
 
 // GetAll mocks base method
-func (m *MockFileStore) GetAll() (map[string]int, error) {
+func (m *MockFileStore) GetAll() (map[string]string, error) {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "GetAll")
-	ret0, _ := ret[0].(map[string]int)
+	ret0, _ := ret[0].(map[string]string)
 	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }

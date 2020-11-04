@@ -1,7 +1,7 @@
 package file
 
 import (
-	"regexp"
+	"sort"
 	"strings"
 	"time"
 
@@ -83,15 +83,14 @@ func (i *Input) setTime() error {
 }
 
 func (i *Input) setDetails() error {
-	r := regexp.MustCompile(`\[([^\[\]]*)\]`)
 
-	submatchall := r.FindAllString(i.text, -1)
-	for _, elm := range submatchall {
-		elm = strings.Trim(elm, "[")
-		elm = strings.Trim(elm, "]")
-		i.details = append(i.details, elm)
-	}
-	i.details = strings.Split(i.details[0], " ")
+	buffer := strings.Split(i.text, "]")[0]
+
+	buffer = strings.Split(buffer, "[")[1]
+
+	i.details = strings.Split(buffer, " ")
+
+	sort.Sort(sort.Reverse(sort.StringSlice(i.details)))
 
 	return nil
 }

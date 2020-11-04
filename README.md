@@ -29,8 +29,16 @@ Optional:
   - Expose a common API for you app so that it can be reached through HTTP,
     preferably using a RESTful approach
 
+
+## Usage
+
+`go run ./cmd/*.go read --file examples/log.txt`
+
+`go run ./cmd/*.go server --file examples/log.txt`
+
+
 ## TODO
 
-- [ ] Handle file update
-- [ ] Read only parts of the file that were not read
-- [ ] handle multiple files
+- [ ] Handle file update (Maybe watch the file)
+- [ ] Read only parts of the file that were not read (Maybe index the reads)
+- [ ] handle multiple files (Maybe use the file name as index)

@@ -174,10 +174,8 @@ func (f *File) Save(text string) (err error) {
 	}
 
 	// Save if it's an error
-	for _, d := range parsedText.Details() {
-		if err := f.store.Bump(d); err != nil {
-			return fmt.Errorf("Failed to store with error `%v`", err)
-		}
+	if err := f.store.Bump(parsedText.Details()); err != nil {
+		return fmt.Errorf("Failed to store with error `%v`", err)
 	}
 
 	return err

@@ -5,8 +5,8 @@ import "time"
 //go:generate mockgen -destination=mocks/mock_file_store.go -package=mocks github.com/yurifrl/logapi FileStore
 // FileStore ...
 type FileStore interface {
-	Bump(key string) error
-	GetAll() (map[string]int, error)
+	Bump(key []string) error
+	GetAll() (map[string]string, error)
 }
 
 //go:generate mockgen -destination=mocks/mock_file.go -package=mocks github.com/yurifrl/logapi File

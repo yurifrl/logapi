@@ -26,8 +26,8 @@ func TestFileServerGetAll(t *testing.T) {
 	mockFile := mocks.NewMockFile(mockCtrl)
 
 	// Create Item
-	item := make(map[string]int)
-	item["foo"] = 1
+	item := make(map[string]string)
+	item["foo"] = "1"
 
 	// Expectations
 	mockFileStore.EXPECT().GetAll().Return(item, nil)
