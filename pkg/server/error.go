@@ -41,7 +41,7 @@ func ErrInvalidRequest(err error) render.Renderer {
 
 // ErrInternalLog will log an error and return a generic server error to the user
 func (s *Server) ErrInternalLog(err error) render.Renderer {
-	s.logger.Error("Server Error %v", err)
+	s.logger.Errorf("Server Error %v", err)
 	return ErrInternal(err)
 }
 

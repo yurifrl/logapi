@@ -5,19 +5,19 @@ import (
 	"sync"
 )
 
-type Store struct {
+type MockStore struct {
 	sync.RWMutex
 	data map[string]map[string]int
 }
 
-func Create() *Store {
-	db := &Store{
+func Create() *MockStore {
+	db := &MockStore{
 		data: make(map[string]map[string]int),
 	}
 	return db
 }
 
-func (s *Store) Bump(keyPath []string) error {
+func (s *MockStore) Bump(keyPath []string) error {
 	s.Lock()
 	if len(keyPath) != 2 {
 		// @TODO: use a real database to index this
@@ -36,7 +36,7 @@ func (s *Store) Bump(keyPath []string) error {
 	return nil
 }
 
-func (s *Store) GetAll() (map[string]string, error) {
+func (s *MockStore) GetAll() (map[string]string, error) {
 	s.RLock()
 
 	data := make(map[string]string)
