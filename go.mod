@@ -4,10 +4,10 @@ go 1.15
 
 require (
 	github.com/fsnotify/fsnotify v1.4.9
-	github.com/gavv/httpexpect v0.0.0-20180803094507-bdde30871313
+	github.com/gavv/httpexpect v2.0.0+incompatible
 	github.com/go-chi/chi v4.1.2+incompatible
 	github.com/go-chi/render v1.0.1
-	github.com/go-kit/kit v0.8.0
+	github.com/go-kit/kit v0.10.0
 	github.com/golang/mock v1.4.4
 	github.com/k0kubun/colorstring v0.0.0-20150214042306-9440f1994b88 // indirect
 	github.com/k0kubun/pp v3.0.1+incompatible

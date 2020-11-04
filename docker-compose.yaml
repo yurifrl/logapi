@@ -1,9 +1,15 @@
 version: "3.7"
 services:
-  test:
+  test: &test
     image: golang
     entrypoint: ""
     working_dir: /go/src/github.com/yurifrl/logapi
-    command: go test
+    command: go test ./pkg/...
     volumes:
       - .:/go/src/github.com/yurifrl/logapi
+  web:
+    <<: *test
+    command: ls ./cmd
+    command: "go run ./cmd server --file examples/log.txt"
+    ports:
+      - 8080:8080

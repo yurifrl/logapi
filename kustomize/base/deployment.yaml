@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: logapi
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      deployment: hello
+  template:
+    metadata:
+      labels:
+        deployment: hello
+    spec:
+      containers:
+      - name: logger
+        image: alpine
+        command: ["/bin/sh"]
+        args:
+          - "-c"
+          - 'while true; do echo "2018-07-02T17:54:14.290Z [api-gateway ffd3082fe09d]: 2018/07/02 17:54:14 [error] 37#0: *1013 [lua] responses." > /tmp/logs.txt; sleep 2; done'
+        volumeMounts:
+        - name: logs
+          mountPath: /tmp
+      - name: logapi
+        image: yurifl/logapi:latest
+        ports:
+        - containerPort: 8080
+        volumeMounts:
+        - name: logs
+          mountPath: /tmp
+        - name: logapi-config
+          mountPath: /etc/config
+
+      volumes:
+      - name: logs
+        emptyDir: {}
+      - name: logapi-config
+        configMap:
+          name: logapi

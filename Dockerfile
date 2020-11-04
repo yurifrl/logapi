@@ -1,5 +1,5 @@
-# Build the manager binary
-FROM golang:1.13 as builder
+# Build the logapi binary
+FROM golang:1.15 as builder
 
 WORKDIR /workspace
 # Copy the Go Modules manifests
@@ -11,16 +11,19 @@ RUN go mod download
 
 COPY pkg/ pkg/
 COPY cmd/ cmd/
+COPY logapi.go logapi.go
 
 # Build
-RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 GO111MODULE=on go build -o manager ./cmd/**.go
+RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 GO111MODULE=on go build -o logapi ./cmd/**.go
 
-# Use distroless as minimal base image to package the manager binary
+# Use distroless as minimal base image to package the logapi binary
 # Refer to https://github.com/GoogleContainerTools/distroless for more details
 FROM gcr.io/distroless/static:nonroot
 WORKDIR /
-COPY --from=builder /workspace/manager .
+COPY --from=builder /workspace/logapi .
+# Copy default config file
+COPY config.yaml config.yaml
 USER nonroot:nonroot
 
-ENTRYPOINT ["/manager"]
+ENTRYPOINT ["/logapi"]
 CMD ["server"]

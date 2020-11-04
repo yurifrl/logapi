@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"os"
 
 	"github.com/sirupsen/logrus"
@@ -18,6 +19,12 @@ func addServerCmd(s *server.Server) *cobra.Command {
 		Use:   "server",
 		Short: "Starts and http server",
 		Long:  ``,
+		PreRunE: func(cmd *cobra.Command, args []string) error {
+			if fileName == "" {
+				return fmt.Errorf("File parameter not set")
+			}
+			return nil
+		},
 		Run: func(cmd *cobra.Command, args []string) {
 			// Create Store
 			fileStore := store.Create()

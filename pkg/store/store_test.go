@@ -13,6 +13,7 @@ func TestSomething(t *testing.T) {
 	expect := make(map[string]string)
 	expect["app"] = "1"
 	expect["instance"] = "1/1"
+
 	if !reflect.DeepEqual(out, expect) {
 		t.Errorf("expected '%v', got '%v'", expect, out)
 	}

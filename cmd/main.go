@@ -90,6 +90,7 @@ func initConfig() {
 		}
 	}
 
+	v.AddConfigPath("/etc/config")
 	v.AddConfigPath(dir)
 	v.AddConfigPath(".")
 	v.AutomaticEnv() // read in environment variables that match
@@ -97,6 +98,7 @@ func initConfig() {
 	// If a config file is found, read it in.
 	if err := v.ReadInConfig(); err == nil {
 		logrus.Info("Using config file:", v.ConfigFileUsed())
+		fileName = v.GetString("file")
 	} else {
 		logrus.Error(err)
 	}

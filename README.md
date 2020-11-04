@@ -1,44 +1,40 @@
 # LogApi
 
-Given the attached logfile (log.txt), write an app that parses the log file and
-outputs the following information to `stdout`:
-
-1. Amount of errors by service name
-2. Instance id of the service instance with most errors
-
-Examples:
-
-```
-[api-gateway]:  17 errors
-[ffd3082fe09d]: 17/17 errors
-```
-
-> **NOTE**: these are just for validation purposes, you don't have to match the format
-
-Hints:
-
-Note the app log has the following format: `%DATE% [service-name instance-id]: log-trace`
-Errors include the `[error]` string on the trace.
-
-Think about how you would handle concurrent calls to you app and things like
-file access and size.
-
-Optional:
-
-  - Dockerize your app.
-  - Expose a common API for you app so that it can be reached through HTTP,
-    preferably using a RESTful approach
-
+Logapi is a tool to run alongside your containers that will allow you to interpret logs and serve them as a rest api
 
 ## Usage
 
-`go run ./cmd/*.go read --file examples/log.txt`
+All the command are available in the `Makefile` but the easiest way is to `docker-compose up web` and `curl 127.0.0.1:8080/files` you can also try `tilt up` to test the application directly on kubernetes
+All commands will use the example log file ´examples/log.txt'
 
-`go run ./cmd/*.go server --file examples/log.txt`
+## Test
 
+'go test pkg/...'
 
-## TODO
+## Architecture
+
+```
+📦 cmd
+│ 📜 *.go # cli definition
+📦 pkg
+└───📂 conf # Configuration management and stop signal handling
+└───📂 file # The file pagckage that handles log parsing and http translation
+└───📂 server # Handles the http server bolierplate
+└───📂 store # Defines the storage
+📦 kustomize # Kubernetes manifests
+📜 config.yaml # The default config for the app
+📜 logapi.go # common interfaces
+📜 Dockerfile # The application image definition
+📜 Tiltfile # tilt is a tool that allows you to run your code with live reload on your local k8s cluster
+📜 docker-compose.yaml # To make docker commands easier
+📜 Makefile # Colletion of usefull commands
+
+```
+
+## TODO (Things that are kinda of outside scope)
 
 - [ ] Handle file update (Maybe watch the file)
 - [ ] Read only parts of the file that were not read (Maybe index the reads)
 - [ ] handle multiple files (Maybe use the file name as index)
+- [ ] Maybe Create A view layer for store
+- [ ] Handle more test cases

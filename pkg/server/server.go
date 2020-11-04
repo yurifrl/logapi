@@ -37,7 +37,7 @@ func (s *Server) ListenAndServe() error {
 		Handler: s.router,
 	}
 
-	listener, err := net.Listen("tcp", s.server.Addr)
+	listener, err := net.Listen("tcp", ":8080")
 	if err != nil {
 		return fmt.Errorf("Could not listen on %s: %v", s.server.Addr, err)
 	}

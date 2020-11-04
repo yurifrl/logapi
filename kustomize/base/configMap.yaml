@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: logapi
+data:
+  config.yaml: |
+    file: /tmp/logs.txt
